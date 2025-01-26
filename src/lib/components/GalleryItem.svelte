@@ -67,29 +67,29 @@
 
 <div class="group relative h-60 w-60 cursor-pointer overflow-hidden rounded-md bg-slate-100">
 	<img
-		class="h-full object-cover"
+		class="h-full object-cover transition-all group-hover:brightness-50"
 		src={item[SpongebobData.columns.img]}
-		data-src={item[SpongebobData.columns.img]}
+		alt={item[SpongebobData.columns.text]}
 	/>
 	<!-- overlay -->
 	<div
-		class="pointer-events-none absolute inset-0 flex select-none flex-col items-center justify-center gap-4 bg-black/50 p-4 opacity-0 transition-opacity group-hover:opacity-100"
+		class="absolute inset-0 flex flex-col items-center justify-center gap-4 p-4 opacity-0 transition-opacity group-hover:opacity-100"
 	>
 		<Button
 			size="icon"
 			variant="ghost"
-			class="pointer-events-auto absolute right-2 top-2 select-none text-white"
+			class="absolute right-2 top-2 text-white"
 			on:click={openFullImage}
 		>
 			<Icon icon="material-symbols:fullscreen-rounded" class="h-6 w-6" />
 		</Button>
 		<p class="text-white opacity-80">{item[SpongebobData.columns.text]}</p>
-		<div class="pointer-events-auto flex items-center gap-2">
+		<div class="flex items-center gap-2">
 			<Button size="icon" variant="ghost" class="text-white" on:click={copyImage}>
-				<Icon class="h-8 w-8 select-none" icon="material-symbols:content-copy-outline" />
+				<Icon class="h-8 w-8" icon="material-symbols:content-copy-outline" />
 			</Button>
 			<Button size="icon" variant="ghost" class="text-white" on:click={downloadImage}>
-				<Icon class="h-8 w-8 select-none" icon="material-symbols:download" />
+				<Icon class="h-8 w-8" icon="material-symbols:download" />
 			</Button>
 		</div>
 	</div>
