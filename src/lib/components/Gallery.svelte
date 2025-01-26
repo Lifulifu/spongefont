@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { SpongebobData } from '@/data';
 	import { debounce } from '@/utils';
+	import GalleryItem from './GalleryItem.svelte';
 
 	export let data: any[] = [];
 	export let initialItems: number = 20;
@@ -30,13 +31,7 @@
 
 <div class="flex w-full flex-wrap justify-center gap-1">
 	{#each data.slice(0, endIndex) as item (item[SpongebobData.columns.id])}
-		<div class="h-60 w-60 overflow-hidden rounded-md bg-slate-100">
-			<img
-				class="h-full object-cover"
-				src={item[SpongebobData.columns.img]}
-				alt={item[SpongebobData.columns.text]}
-			/>
-		</div>
+		<GalleryItem {item} />
 	{/each}
 	<div bind:this={endDom}></div>
 </div>
