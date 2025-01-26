@@ -2,6 +2,8 @@
 	import { SpongebobData } from '@/data';
 	import { debounce } from '@/utils';
 	import GalleryItem from './GalleryItem.svelte';
+	import Button from './ui/button/button.svelte';
+	import Icon from '@iconify/svelte';
 
 	export let data: any[] = [];
 	export let initialItems: number = 20;
@@ -22,16 +24,24 @@
 					loadMore();
 				}
 			},
-			{ threshold: 1 }
+			{ threshold: 0 }
 		);
 
 		loadMoreObserver.observe(endDom);
 	}
 </script>
 
-<div class="flex w-full flex-wrap justify-center gap-1">
-	{#each data.slice(0, endIndex) as item (item[SpongebobData.columns.id])}
-		<GalleryItem {item} />
-	{/each}
+<div class="text-center">
+	<div class="flex w-full flex-wrap justify-center gap-1">
+		{#each data.slice(0, endIndex) as item (item[SpongebobData.columns.id])}
+			<GalleryItem {item} />
+		{/each}
+	</div>
 	<div bind:this={endDom}></div>
+	<Button on:click={loadMore} variant="ghost" class="mt-4"
+		><Icon
+			icon="material-symbols:keyboard-double-arrow-down-rounded"
+			class="mr-2"
+		/>載入更多</Button
+	>
 </div>
