@@ -3,6 +3,7 @@
 	import { fade } from 'svelte/transition';
 	import Button from './ui/button/button.svelte';
 	import Icon from '@iconify/svelte';
+	import { toast } from 'svelte-sonner';
 
 	export let item: any = {};
 	let hovering: boolean = false;
@@ -24,9 +25,11 @@
 						'image/png': pngBlob as Blob
 					})
 				]);
+				toast.success('圖片已複製', { position: 'bottom-center' });
 			}, 'image/png');
 		} catch (err) {
 			console.error('Failed to copy image: ', err);
+			toast.error(`複製圖片失敗: ${err}`, { position: 'bottom-center' });
 		}
 	}
 
