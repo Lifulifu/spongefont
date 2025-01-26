@@ -65,15 +65,17 @@
 	}
 </script>
 
-<div class="group relative h-60 w-60 cursor-pointer overflow-hidden rounded-md bg-slate-100">
+<div
+	class="group relative h-60 w-60 cursor-pointer select-none overflow-hidden rounded-md bg-slate-100"
+>
 	<img
-		class="h-full object-cover"
+		class="pointer-events-none h-full object-cover"
 		src={item[SpongebobData.columns.img]}
 		alt={item[SpongebobData.columns.text]}
 	/>
 	<!-- overlay -->
 	<div
-		class="pointer-events-none absolute inset-0 flex flex-col items-center justify-center gap-4 bg-black/50 p-4 opacity-0 transition-opacity group-hover:opacity-100"
+		class="absolute inset-0 flex select-none flex-col items-center justify-center gap-4 bg-black/50 p-4 opacity-0 transition-opacity group-hover:opacity-100"
 	>
 		<Icon
 			icon="material-symbols:fullscreen-rounded"
