@@ -4,6 +4,8 @@
 	import { ModeWatcher } from 'mode-watcher';
 	import { toggleMode } from 'mode-watcher';
 	import Icon from '@iconify/svelte';
+	import AboutDialog from '@/components/AboutDialog.svelte';
+	import { Toaster } from '@/components/ui/sonner';
 	let { children } = $props();
 </script>
 
@@ -18,6 +20,7 @@
 		<Icon icon="material-symbols:feature-search-rounded" />海綿體
 	</h1>
 	<div class="flex items-center">
+		<AboutDialog />
 		<Button size="icon" variant="ghost" href="https://github.com/Lifulifu/spongefont"
 			><Icon icon="mdi:github" class="h-6 w-6" /></Button
 		>
@@ -27,4 +30,7 @@
 		</Button>
 	</div>
 </nav>
+
 {@render children()}
+
+<Toaster />
