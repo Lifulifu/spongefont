@@ -77,16 +77,16 @@
 	>
 		<Icon
 			icon="material-symbols:fullscreen-rounded"
-			class="absolute right-2 top-2 h-6 w-6"
+			class="absolute right-2 top-2 h-6 w-6 select-none"
 			on:click={openFullImage}
 		/>
 		<p class="select-none text-white opacity-80">{item[SpongebobData.columns.text]}</p>
 		<div class="gap2 flex items-center">
-			<Button size="icon" variant="ghost" class="text-white" on:click={copyImage}>
-				<Icon class="h-8 w-8" icon="material-symbols:content-copy-outline" />
+			<Button size="icon" variant="ghost" class="select-none text-white" on:click={copyImage}>
+				<Icon class="h-8 w-8 select-none" icon="material-symbols:content-copy-outline" />
 			</Button>
-			<Button size="icon" variant="ghost" class="text-white" on:click={downloadImage}>
-				<Icon class="h-8 w-8" icon="material-symbols:download" />
+			<Button size="icon" variant="ghost" class="select-none text-white" on:click={downloadImage}>
+				<Icon class="h-8 w-8 select-none" icon="material-symbols:download" />
 			</Button>
 		</div>
 	</div>
