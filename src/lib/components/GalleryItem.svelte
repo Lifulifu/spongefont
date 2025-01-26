@@ -9,7 +9,7 @@
 	let hovering: boolean = false;
 
 	async function copyImage(e: MouseEvent) {
-		e.stopPropagation();
+		e.preventDefault();
 		try {
 			const response = await fetch(item[SpongebobData.columns.img]);
 			const blob = await response.blob();
@@ -34,7 +34,7 @@
 	}
 
 	async function downloadImage(e: MouseEvent) {
-		e.stopPropagation();
+		e.preventDefault();
 		const response = await fetch(item[SpongebobData.columns.img]);
 		const blob = await response.blob();
 		const url = URL.createObjectURL(blob);
@@ -48,12 +48,11 @@
 	}
 </script>
 
-<div
+<a
+	href={item[SpongebobData.columns.img]}
 	class="relative h-60 w-60 overflow-hidden rounded-md bg-slate-100"
 	on:mouseenter={() => (hovering = true)}
 	on:mouseleave={() => (hovering = false)}
-	role="button"
-	tabindex="0"
 >
 	{#if hovering}
 		<!-- overlay -->
@@ -61,11 +60,13 @@
 			transition:fade={{ duration: 100 }}
 			class="absolute inset-0 flex flex-col items-center justify-center gap-4 bg-black bg-opacity-60 p-4"
 		>
-			<p class="text-white opacity-80">{item[SpongebobData.columns.text]}</p>
+			<p class="select-none text-white opacity-80">{item[SpongebobData.columns.text]}</p>
 			<div class="gap2 flex items-center">
-				<Button size="icon" variant="ghost" class="text-white" on:click={copyImage}>
-					<Icon class="h-8 w-8" icon="material-symbols:content-copy-outline" />
-				</Button>
+				{#if window.isSecureContext}
+					<Button size="icon" variant="ghost" class="text-white" on:click={copyImage}>
+						<Icon class="h-8 w-8" icon="material-symbols:content-copy-outline" />
+					</Button>
+				{/if}
 				<Button size="icon" variant="ghost" class="text-white" on:click={downloadImage}>
 					<Icon class="h-8 w-8" icon="material-symbols:download" />
 				</Button>
@@ -77,4 +78,4 @@
 		src={item[SpongebobData.columns.img]}
 		alt={item[SpongebobData.columns.text]}
 	/>
-</div>
+</a>
