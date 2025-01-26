@@ -19,12 +19,17 @@
 			const context = canvas.getContext('2d') as CanvasRenderingContext2D;
 			context.drawImage(imageBitmap, 0, 0);
 			canvas.toBlob(async (pngBlob) => {
-				await navigator.clipboard.write([
-					new ClipboardItem({
-						'image/png': pngBlob as Blob
-					})
-				]);
-				toast.success('圖片已複製', { position: 'bottom-center' });
+				try {
+					await navigator.clipboard.write([
+						new ClipboardItem({
+							'image/png': pngBlob as Blob
+						})
+					]);
+					toast.success('圖片已複製', { position: 'bottom-center' });
+				} catch (err) {
+					console.error('Failed to copy image: ', err);
+					toast.error(`複製圖片失敗: ${err}`, { position: 'bottom-center' });
+				}
 			}, 'image/png');
 		} catch (err) {
 			console.error('Failed to copy image: ', err);
