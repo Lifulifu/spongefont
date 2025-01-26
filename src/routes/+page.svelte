@@ -9,6 +9,7 @@
 
 	let searchInputValue: string = '';
 	let spongebobData: any[] = [];
+	let currentTab: string = 'random';
 
 	onMount(async () => {
 		let data = await SpongebobData.load();
@@ -18,6 +19,10 @@
 		});
 		spongebobData = data;
 	});
+
+	$: if (searchInputValue) {
+		currentTab = 'search';
+	}
 </script>
 
 <div class="pb-24">
@@ -25,7 +30,7 @@
 		<SearchInput placeholder="輸入搜尋文字..." bind:value={searchInputValue} />
 	</div>
 
-	<Tabs.Root value="random" class="w-full">
+	<Tabs.Root bind:value={currentTab} class="w-full">
 		<Tabs.List class="mx-auto mb-4 grid w-64 grid-cols-2 gap-2">
 			<Tabs.Trigger value="search"
 				><Icon icon="material-symbols:search-rounded" class="mr-2" />搜尋</Tabs.Trigger

@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { SpongebobData } from '@/data';
+	import { debounce } from '@/utils';
 
 	export let data: any[] = [];
 	export let initialItems: number = 20;
@@ -8,10 +9,10 @@
 	let endDom: HTMLDivElement;
 	let loadMoreObserver: IntersectionObserver;
 
-	function loadMore() {
+	let loadMore = debounce(() => {
 		if (endIndex >= data.length) return;
 		endIndex += itemsPerLoad;
-	}
+	}, 500);
 
 	$: if (endDom) {
 		loadMoreObserver = new IntersectionObserver(
