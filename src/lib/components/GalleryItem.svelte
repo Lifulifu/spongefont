@@ -89,6 +89,7 @@
 		class="h-full object-cover"
 		src={item[SpongebobData.columns.img]}
 		alt={item[SpongebobData.columns.text]}
+		on:click={() => (showFullImage = true)}
 	/>
 </div>
 
