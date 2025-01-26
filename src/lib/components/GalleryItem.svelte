@@ -57,12 +57,15 @@
 		document.body.removeChild(a);
 		URL.revokeObjectURL(url);
 	}
+
+	function openFullImage(e: MouseEvent) {
+		e.preventDefault();
+		e.stopPropagation();
+		showFullImage = true;
+	}
 </script>
 
-<div
-	class="group relative h-60 w-60 cursor-pointer overflow-hidden rounded-md bg-slate-100"
-	on:click={() => (showFullImage = true)}
->
+<div class="group relative h-60 w-60 cursor-pointer overflow-hidden rounded-md bg-slate-100">
 	<img
 		class="h-full object-cover"
 		src={item[SpongebobData.columns.img]}
@@ -72,7 +75,11 @@
 	<div
 		class="absolute inset-0 flex flex-col items-center justify-center gap-4 bg-black/50 p-4 opacity-0 transition-opacity group-hover:opacity-100"
 	>
-		<Icon icon="material-symbols:fullscreen-rounded" class="absolute right-2 top-2 h-6 w-6" />
+		<Icon
+			icon="material-symbols:fullscreen-rounded"
+			class="absolute right-2 top-2 h-6 w-6"
+			on:click={openFullImage}
+		/>
 		<p class="select-none text-white opacity-80">{item[SpongebobData.columns.text]}</p>
 		<div class="gap2 flex items-center">
 			<Button size="icon" variant="ghost" class="text-white" on:click={copyImage}>
