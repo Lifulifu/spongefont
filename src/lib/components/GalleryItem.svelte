@@ -65,32 +65,34 @@
 	}
 </script>
 
-<div class="relative h-60 w-60 cursor-pointer overflow-hidden rounded-md bg-slate-100">
-	<img
-		class="h-full transition-all group-hover:brightness-50"
-		src={item[SpongebobData.columns.img]}
-		alt={item[SpongebobData.columns.text]}
-	/>
-	<!-- overlay -->
-	<div
-		class="absolute inset-0 flex select-none flex-col items-center justify-center gap-4 p-4 opacity-0 transition-opacity hover:opacity-100"
-	>
-		<Button
-			size="icon"
-			variant="ghost"
-			class="absolute right-2 top-2 text-white"
-			on:click={openFullImage}
+<div class="h-60 w-60 cursor-pointer overflow-hidden rounded-md bg-slate-100">
+	<div class="relative">
+		<img
+			class="h-full transition-all hover:brightness-50"
+			src={item[SpongebobData.columns.img]}
+			alt={item[SpongebobData.columns.text]}
+		/>
+		<!-- overlay -->
+		<div
+			class="absolute inset-0 flex select-none flex-col items-center justify-center gap-4 p-4 opacity-0 transition-opacity hover:opacity-100"
 		>
-			<Icon icon="material-symbols:fullscreen-rounded" class="h-6 w-6" />
-		</Button>
-		<p class="text-white opacity-80">{item[SpongebobData.columns.text]}</p>
-		<div class="flex items-center gap-2">
-			<Button size="icon" variant="ghost" class="text-white" on:click={copyImage}>
-				<Icon class="h-8 w-8" icon="material-symbols:content-copy-outline" />
+			<Button
+				size="icon"
+				variant="ghost"
+				class="absolute right-2 top-2 text-white"
+				on:click={openFullImage}
+			>
+				<Icon icon="material-symbols:fullscreen-rounded" class="h-6 w-6" />
 			</Button>
-			<Button size="icon" variant="ghost" class="text-white" on:click={downloadImage}>
-				<Icon class="h-8 w-8" icon="material-symbols:download" />
-			</Button>
+			<p class="text-white opacity-80">{item[SpongebobData.columns.text]}</p>
+			<div class="flex items-center gap-2">
+				<Button size="icon" variant="ghost" class="text-white" on:click={copyImage}>
+					<Icon class="h-8 w-8" icon="material-symbols:content-copy-outline" />
+				</Button>
+				<Button size="icon" variant="ghost" class="text-white" on:click={downloadImage}>
+					<Icon class="h-8 w-8" icon="material-symbols:download" />
+				</Button>
+			</div>
 		</div>
 	</div>
 </div>
