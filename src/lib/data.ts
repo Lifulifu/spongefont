@@ -9,7 +9,7 @@ export class SpongebobData {
   };
 
   static async load(): Promise<any[]> {
-    const response = await fetch('/spongebob_data.xlsx');
+    const response = await fetch('spongebob_data.xlsx');
     const blob = await response.blob();
     const rows = await readXlsxFile(blob);
     return rows;
