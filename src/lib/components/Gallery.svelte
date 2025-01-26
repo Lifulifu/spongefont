@@ -38,10 +38,12 @@
 		{/each}
 	</div>
 	<div bind:this={endDom}></div>
-	<Button on:click={loadMore} variant="ghost" class="mt-4"
-		><Icon
-			icon="material-symbols:keyboard-double-arrow-down-rounded"
-			class="mr-2"
-		/>載入更多</Button
-	>
+	{#if endIndex < data.length}
+		<Button on:click={loadMore} variant="ghost" class="mt-4"
+			><Icon
+				icon="material-symbols:keyboard-double-arrow-down-rounded"
+				class="mr-2"
+			/>載入更多</Button
+		>
+	{/if}
 </div>
