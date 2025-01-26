@@ -73,7 +73,7 @@
 	/>
 	<!-- overlay -->
 	<div
-		class="absolute inset-0 flex flex-col items-center justify-center gap-4 p-4 opacity-0 transition-opacity group-hover:opacity-100"
+		class="absolute inset-0 flex select-none flex-col items-center justify-center gap-4 p-4 opacity-0 transition-opacity group-hover:opacity-100"
 	>
 		<Button
 			size="icon"
