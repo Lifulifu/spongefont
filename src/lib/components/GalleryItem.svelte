@@ -65,11 +65,9 @@
 	}
 </script>
 
-<div
-	class="group relative h-60 w-60 cursor-pointer select-none overflow-hidden rounded-md bg-slate-100"
->
+<div class="group relative h-60 w-60 cursor-pointer overflow-hidden rounded-md bg-slate-100">
 	<img
-		class="h-full select-all object-cover"
+		class="h-full object-cover"
 		src={item[SpongebobData.columns.img]}
 		alt={item[SpongebobData.columns.text]}
 	/>
@@ -77,11 +75,14 @@
 	<div
 		class="pointer-events-none absolute inset-0 flex select-none flex-col items-center justify-center gap-4 bg-black/50 p-4 opacity-0 transition-opacity group-hover:opacity-100"
 	>
-		<Icon
-			icon="material-symbols:fullscreen-rounded"
-			class="absolute right-2 top-2 h-6 w-6 select-none"
+		<Button
+			size="icon"
+			variant="ghost"
+			class="pointer-events-auto absolute right-2 top-2 select-none text-white"
 			on:click={openFullImage}
-		/>
+		>
+			<Icon icon="material-symbols:fullscreen-rounded" class="h-6 w-6" />
+		</Button>
 		<p class="text-white opacity-80">{item[SpongebobData.columns.text]}</p>
 		<div class="pointer-events-auto flex items-center gap-2">
 			<Button size="icon" variant="ghost" class="text-white" on:click={copyImage}>
