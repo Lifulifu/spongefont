@@ -69,7 +69,7 @@
 	<img
 		class="h-full object-cover"
 		src={item[SpongebobData.columns.img]}
-		alt={item[SpongebobData.columns.text]}
+		data-src={item[SpongebobData.columns.img]}
 	/>
 	<!-- overlay -->
 	<div
