@@ -9,7 +9,6 @@
 	let hovering: boolean = false;
 
 	async function copyImage(e: MouseEvent) {
-		e.stopPropagation();
 		try {
 			const response = await fetch(item[SpongebobData.columns.img]);
 			const blob = await response.blob();
@@ -34,7 +33,6 @@
 	}
 
 	async function downloadImage(e: MouseEvent) {
-		e.stopPropagation();
 		const response = await fetch(item[SpongebobData.columns.img]);
 		const blob = await response.blob();
 		const url = URL.createObjectURL(blob);
