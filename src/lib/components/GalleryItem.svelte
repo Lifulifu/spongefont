@@ -1,11 +1,9 @@
 <script lang="ts">
 	import { SpongebobData } from '@/data.js';
-	import { fade } from 'svelte/transition';
 	import Button from './ui/button/button.svelte';
 	import Icon from '@iconify/svelte';
 	import { toast } from 'svelte-sonner';
 	import * as Dialog from '$lib/components/ui/dialog';
-	import { Description } from './ui/card';
 
 	export let item: any = {};
 	let showFullImage: boolean = false;
@@ -32,7 +30,7 @@
 					toast.success('圖片已複製', { position: 'bottom-center' });
 				} catch (err) {
 					console.error('Failed to copy image: ', err);
-					toast.error(`複製圖片失敗。請嘗試打開圖片後再長按複製圖片。`, {
+					toast.error(`複製圖片失敗。請嘗試長按複製圖片。`, {
 						position: 'bottom-center'
 					});
 				}
@@ -59,40 +57,20 @@
 	}
 
 	function openFullImage(e: MouseEvent) {
-		e.preventDefault();
-		e.stopPropagation();
 		showFullImage = true;
 	}
 </script>
 
-<div class="group relative h-60 w-60 cursor-pointer overflow-hidden rounded-md bg-slate-100">
+<div
+	class="relative h-60 w-60 cursor-pointer overflow-hidden rounded-md bg-slate-100 transition-all hover:brightness-75"
+	on:click={openFullImage}
+>
 	<img
-		class="h-full object-cover transition-all group-hover:brightness-50"
+		class="h-full object-cover transition-all"
 		src={item[SpongebobData.columns.img]}
 		alt={item[SpongebobData.columns.text]}
+		loading="lazy"
 	/>
-	<!-- overlay -->
-	<div
-		class="absolute inset-0 flex flex-col items-center justify-center gap-4 p-4 opacity-0 transition-opacity group-hover:opacity-100"
-	>
-		<Button
-			size="icon"
-			variant="ghost"
-			class="absolute right-2 top-2 text-white"
-			on:click={openFullImage}
-		>
-			<Icon icon="material-symbols:fullscreen-rounded" class="h-6 w-6" />
-		</Button>
-		<p class="text-white opacity-80">{item[SpongebobData.columns.text]}</p>
-		<div class="flex items-center gap-2">
-			<Button size="icon" variant="ghost" class="text-white" on:click={copyImage}>
-				<Icon class="h-8 w-8" icon="material-symbols:content-copy-outline" />
-			</Button>
-			<Button size="icon" variant="ghost" class="text-white" on:click={downloadImage}>
-				<Icon class="h-8 w-8" icon="material-symbols:download" />
-			</Button>
-		</div>
-	</div>
 </div>
 
 <Dialog.Root bind:open={showFullImage}>
@@ -101,6 +79,14 @@
 			<Dialog.Description class="text-center">{item[SpongebobData.columns.text]}</Dialog.Description
 			>
 		</Dialog.Header>
+		<div class="flex items-center justify-center gap-2">
+			<Button on:click={copyImage} size="icon" variant="ghost">
+				<Icon icon="material-symbols:content-copy-outline" class="h-6 w-6" />
+			</Button>
+			<Button on:click={downloadImage} size="icon" variant="ghost">
+				<Icon icon="material-symbols:download" class="h-6 w-6" />
+			</Button>
+		</div>
 		<img
 			class="w-full"
 			src={item[SpongebobData.columns.img]}

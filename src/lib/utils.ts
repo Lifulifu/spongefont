@@ -68,3 +68,22 @@ export function debounce<T extends (...args: any[]) => any>(func: T, timeout: nu
     timer = setTimeout(() => func(...args), timeout);
   };
 }
+
+export function isSubsequence(s1: string, s2: string) {
+  // return true if s1 is a subsequence of s2
+  let p1 = 0;
+  let p2 = 0;
+  while (p1 < s1.length) {
+    if (s1[p1] === s2[p2]) {
+      p1++;
+      p2++;
+    } else {
+      p2++;
+      if (p2 > s2.length) {
+        return false;
+      }
+    }
+  }
+  return true;
+
+};

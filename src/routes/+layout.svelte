@@ -16,14 +16,12 @@
 <ModeWatcher />
 
 <nav class="container flex items-center justify-between py-2">
-	<h1 class="flex items-center gap-2 text-2xl">
+	<h1 class="flex select-none items-center gap-2 text-2xl">
 		<Icon icon="material-symbols:feature-search-rounded" />海綿體
 	</h1>
 	<div class="flex items-center">
 		<AboutDialog />
-		<Button size="icon" variant="ghost" href="https://github.com/Lifulifu/spongefont"
-			><Icon icon="mdi:github" class="h-6 w-6" /></Button
-		>
+
 		<Button size="icon" variant="ghost" on:click={toggleMode}>
 			<Icon icon="material-symbols:light-mode" class="h-6 w-6 scale-0 dark:scale-100" />
 			<Icon icon="material-symbols:dark-mode" class="absolute h-6 w-6 scale-100 dark:scale-0" />

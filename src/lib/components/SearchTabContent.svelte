@@ -3,7 +3,7 @@
 	import Icon from '@iconify/svelte';
 	import Gallery from './Gallery.svelte';
 	import { SpongebobData } from '@/data';
-	import { debounce } from '@/utils';
+	import { debounce, isSubsequence } from '@/utils';
 
 	export let data: any[] = [];
 	export let searchInputValue: string = '';
@@ -15,10 +15,8 @@
 				if (!row[SpongebobData.columns.text]) {
 					return false;
 				}
-				return row[SpongebobData.columns.text]
-					.toString()
-					.toLowerCase()
-					.includes(value.toLowerCase());
+				const target = row[SpongebobData.columns.text].toString().toLowerCase();
+				return isSubsequence(value.toLowerCase(), target);
 			});
 		} else {
 			filteredData = [];
