@@ -6,6 +6,7 @@
 	import RandomTabContent from '@/components/RandomTabContent.svelte';
 	import { onMount } from 'svelte';
 	import { SpongebobData } from '@/data';
+	import LikesTabContent from '@/components/LikesTabContent.svelte';
 
 	let searchInputValue: string = '';
 	let spongebobData: any[] = [];
@@ -31,17 +32,21 @@
 	</div>
 
 	<Tabs.Root bind:value={currentTab} class="w-full">
-		<Tabs.List class="mx-auto mb-4 grid w-64 grid-cols-2 gap-2">
+		<Tabs.List class="mx-auto mb-4 grid w-64 grid-cols-3 gap-2">
 			<Tabs.Trigger value="search"
 				><Icon icon="material-symbols:search-rounded" class="mr-2" />搜尋</Tabs.Trigger
 			>
 			<Tabs.Trigger value="random"
 				><Icon icon="material-symbols:shuffle-rounded" class="mr-2" />隨機</Tabs.Trigger
 			>
+			<Tabs.Trigger value="likes"
+				><Icon icon="material-symbols:favorite-rounded" class="mr-2" />最愛</Tabs.Trigger
+			>
 		</Tabs.List>
 		<Tabs.Content value="search"
 			><SearchTabContent data={spongebobData} {searchInputValue} /></Tabs.Content
 		>
 		<Tabs.Content value="random"><RandomTabContent data={spongebobData} /></Tabs.Content>
+		<Tabs.Content value="likes"><LikesTabContent data={spongebobData} /></Tabs.Content>
 	</Tabs.Root>
 </div>

@@ -4,9 +4,11 @@
 	import Icon from '@iconify/svelte';
 	import { toast } from 'svelte-sonner';
 	import * as Dialog from '$lib/components/ui/dialog';
+	import { user } from '$lib/store';
 
 	export let item: any = {};
 	let showFullImage: boolean = false;
+	$: liked = $user.likes?.[item[SpongebobData.columns.id]] || false;
 
 	async function copyImage(e: MouseEvent) {
 		e.preventDefault();
@@ -59,6 +61,15 @@
 	function openFullImage(e: MouseEvent) {
 		showFullImage = true;
 	}
+
+	function onLike() {
+		if (liked) {
+			delete $user.likes[item[SpongebobData.columns.id]];
+		} else {
+			$user.likes[item[SpongebobData.columns.id]] = true;
+		}
+		$user.likes = $user.likes;
+	}
 </script>
 
 <div
@@ -71,6 +82,11 @@
 		alt={item[SpongebobData.columns.text]}
 		loading="lazy"
 	/>
+	{#if liked}
+		<div class="absolute right-2 top-2 rounded-md bg-black/50 p-1">
+			<Icon icon="material-symbols:favorite-rounded" class="h-6 w-6 text-white" />
+		</div>
+	{/if}
 </div>
 
 <Dialog.Root bind:open={showFullImage}>
@@ -85,6 +101,13 @@
 			</Button>
 			<Button on:click={downloadImage} size="icon" variant="ghost">
 				<Icon icon="material-symbols:download" class="h-6 w-6" />
+			</Button>
+			<Button on:click={onLike} size="icon" variant="ghost">
+				{#if liked}
+					<Icon icon="material-symbols:favorite-rounded" class="h-6 w-6" />
+				{:else}
+					<Icon icon="material-symbols:heart-plus-outline-rounded" class="h-6 w-6" />
+				{/if}
 			</Button>
 		</div>
 		<img

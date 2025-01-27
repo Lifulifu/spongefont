@@ -29,7 +29,7 @@
 <div class="container text-center">
 	<div class="mb-4 mt-6 flex items-center justify-center">
 		<Icon icon="material-symbols:search-rounded" class="mr-2" />
-		<p>
+		<p class="text-sm">
 			<b>{filteredData.length}</b> 個結果
 		</p>
 	</div>
